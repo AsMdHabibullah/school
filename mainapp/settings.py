@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a93p5!d6(cqcupyt4(6r!56+na8h(6m+^bhbo0g^ni+g_4^xb3'
+SECRET_KEY = 'django-insjndjsdhdskjecure-a93p5!d6(cqcupyt4(6r!56+na8h(6m+^bhbo0g^ni+g_4^xb3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,28 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+TP_APPS = [
+    # 'corsheaders',
+    'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'rest_auth.registration',
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+]
+
+LOCAL_APPS = [
+    'student.apps.StudentConfig',
+    'teacher.apps.TeacherConfig',
+    'subject.apps.SubjectConfig',
+    'account.apps.AccountConfig',
+    'department.apps.DepartmentConfig',
+]
+
+INSTALLED_APPS += TP_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,13 +95,23 @@ WSGI_APPLICATION = 'mainapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": "[YOUR_DATABASE_NAME]",
+#         "USER": "[YOUR_USER_NAME]",
+#         "PASSWORD": "",
+#         "HOST": "localhost",
+#         "PORT": "",
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -118,7 +150,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
+# STATICFILES_DIRS = (
+#     Path.joinpath(BASE_DIR, 'static'),
+# )
+# STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
+
+# path.join(PROJECT_ROOT, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
