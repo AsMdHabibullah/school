@@ -55,7 +55,7 @@ LOCAL_APPS = [
     'student.apps.StudentConfig',
     'teacher.apps.TeacherConfig',
     'subject.apps.SubjectConfig',
-    'account.apps.AccountConfig',
+    'semester.apps.SemesterConfig',
     'department.apps.DepartmentConfig',
 ]
 

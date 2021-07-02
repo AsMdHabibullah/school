@@ -1,55 +1,54 @@
 from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
-from subject.models import Subject
+from semester.models import Semester
 from rest_framework.response import Response
-from subject.serializers import SubjectSerializer
+from semester.serializers import SemesterSerializer
 
 
-# Create subject RestAPI views to use in frontand.
-class SubjectViews(APIView):
+# Create semester RestAPI views to use in frontand.
+class SemesterViews(APIView):
     """
-    List all subject, or create a new subject.
+    List all semester, or create a new semester.
     """
-
     def get(self, request, format=None):
         try:
-            subjects = Subject.objects.all()
-            serializer = SubjectSerializer(subjects, many=True)
+            semesters = Semester.objects.all()
+            serializer = SemesterSerializer(semesters, many=True)
             # print(len(serializer.data))
             if len(serializer.data) > 0:
                 return Response(serializer.data, status=status.HTTP_200_OK)
-            return Response(data="subjects not found :(", status=status.HTTP_404_NOT_FOUND)
-        except subjects.DoesNotExist:
+            return Response(data="semesters not found :(", status=status.HTTP_404_NOT_FOUND)
+        except semesters.DoesNotExist:
             raise Response(status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, format=None):
-        serializer = SubjectSerializer(data=request.data)
+        serializer = SemesterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# subject details also for update and destroy
-class SubjectDetailsViews(APIView):
-    """Single subject all method"""
+# semester details also for update and destroy
+class SemesterDetailsViews(APIView):
+    """Single semester all method"""
 
-    def get_subjects(self, pk):
+    def get_semesters(self, pk):
         try:
-            tec = Subject.objects.get(pk=pk)
+            tec = Semester.objects.get(pk=pk)
             return tec
-        except Subject.DoesNotExist:
+        except Semester.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
         # print(pk)
-        subject = self.get_subjects(pk)
-        return Response(subject, status=status.HTTP_200_OK)
+        semester = self.get_semesters(pk)
+        return Response(semester, status=status.HTTP_200_OK)
 
     def put(self, request, pk, format=None):
-        subject = self.get_subjects(pk)
-        serializer = SubjectSerializer(subject, data=request.data)
+        semester = self.get_semesters(pk)
+        serializer = SemesterSerializer(semester, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_426_UPGRADE_REQUIRED)
@@ -57,7 +56,7 @@ class SubjectDetailsViews(APIView):
             Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        subject = self.get_subjects(pk)
-        if subject:
-            subject.delete()
+        semester = self.get_semesters(pk)
+        if semester:
+            semester.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)

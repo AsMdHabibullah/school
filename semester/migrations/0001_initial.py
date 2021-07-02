@@ -9,19 +9,18 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('teacher', '0001_initial'),
-        ('department', '0001_initial'),
+        ('student', '0001_initial'),
+        ('subject', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Subject',
+            name='Semester',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
-                ('details', models.TextField(max_length=5000)),
-                ('department', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='department.department')),
-                ('teacher', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='teacher.teacher')),
+                ('student', models.OneToOneField(on_delete=django.db.models.deletion.DO_NOTHING, to='student.student')),
+                ('subjects', models.ManyToManyField(to='subject.Subject')),
             ],
         ),
     ]

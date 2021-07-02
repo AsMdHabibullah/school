@@ -19,8 +19,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
+    # path('/', ),
     path('admin/', admin.site.urls),
-    path('department/', include('department.urls')),
+    path('teacher/', include('teacher.urls', namespace='teacher')),
+    path('student/', include('student.urls', namespace='student')),
+    path('subject/', include('subject.urls', namespace='subject')),
+    path('semester/', include('semester.urls', namespace='semester')),
+    path('department/', include('department.urls', namespace='department')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
