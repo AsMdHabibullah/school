@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # path('/', ),
     path('admin/', admin.site.urls),
     path('teacher/', include('teacher.urls', namespace='teacher')),
     path('student/', include('student.urls', namespace='student')),

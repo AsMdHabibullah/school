@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,15 +39,7 @@ INSTALLED_APPS = [
 ]
 
 TP_APPS = [
-    # 'corsheaders',
     'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
-    # 'rest_auth.registration',
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
 ]
 
 LOCAL_APPS = [
